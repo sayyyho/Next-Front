@@ -1,3 +1,7 @@
+# how to run
+
+- npm run dev
+
 # JSX
 
 - return 아래 하나의 태그만

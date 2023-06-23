@@ -1,32 +1,34 @@
-html,
 body {
   margin: 0;
-  text-align: center;
+  /* text-align: center; */
   background-color: gray;
   color: white;
-  height: 100%;
 }
 
-div {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+.title {
+  text-align: center;
+  margin-top: 15px;
 }
 
-a {
-  display: block;
+.title-sub {
+  text-align: center;
+}
+
+.food {
+  margin: 20px auto;
+  width: 200px;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.navbar {
+  background-color: white;
+  padding: 20px;
+}
+
+.navbar a {
+  margin-right: 10px;
   text-decoration: none;
-  color: white;
-  margin-top: 20%;
-}
-
-a:hover {
-  background-color: black;
-}
-
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
 }
