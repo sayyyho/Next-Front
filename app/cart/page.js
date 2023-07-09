@@ -1,17 +1,38 @@
+// 파일 최상단에 'use client'를 선언하면 해당 파일의 컴포넌트는 모두 클라이언트 컴포넌트가 된다.
+// 하지 않으면 모두가 server 컴포넌트인데, useState, event 등 자바스크립트 속성들을 사용하지 못함
+// server 컴포넌트는 로딩이 빠름 (자바스크립트 기능이 배제 되기 때문에)
+// client 컴포넌트는 로딩이 느림 왜냐하면 자바스크립트 기능이 존재. hydration 과정이 필요함 (html을 자바스크립트로 다시 분석하는 과정)
+// 따라서 큰 페이지는 서버 컴포넌트를 사용하고, 자바스크립트 기능이 필요할 때, 클라이언트 컴포넌트를 사용하자
+import { age, Greeting } from "./data.js";
+
 export default function Cart() {
   return (
     <div>
       <h4 className="title">Cart</h4>
-      <div className="cart-item">
+      {/* <div className="cart-item">
         <p>상품명</p>
         <p>$40</p>
         <p>1개</p>
-      </div>
-      <div className="cart-item">
-        <p>상품명</p>
-        <p>$40</p>
-        <p>1개</p>
-      </div>
+      </div> */}
+      {/* Component로 덩어리식으로 묶자 */}
+      <Greeting></Greeting>
+      <h4>Info : {age}</h4>
+      <CartItem></CartItem>
+      <CartItem></CartItem>
+      <CartItem></CartItem>
+      {/* 재사용이 잦은 요소들만 컴포넌트화 시키는게 좋음 */}
+    </div>
+  );
+}
+// nextJS는 서버 컴포넌트랑 클라이언트 컴포넌트가 나뉨
+
+// 컴포넌트는 다른 요소 밖에서 만드는 것이 좋음
+function CartItem() {
+  return (
+    <div className="cart-item">
+      <p>상품명</p>
+      <p>$40</p>
+      <p>1개</p>
     </div>
   );
 }
