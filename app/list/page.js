@@ -1,11 +1,13 @@
+"use client";
 // import Image from "next/image";
 // import foodImage from "/public/food0.png";
+import { useState } from "react";
 export default function List() {
   let itemName = ["Tomato", "Pasta", "Coconut"];
-  let myArray = [1, 2, 3];
-  myArray.map((a) => {
-    console.log(a);
-  });
+  let [amount, addAmount] = useState(0);
+  // state도 클라이언트 컴포넌트 내에서만 가능
+  // state 이점 : state 변경 시 자동 재랜더링 기능 제공
+
   // array 내 요소만큼 함수 실행
   // 1st event는 array 내 요소 하나씩
   // 2nd evnet는 현재 인덱스 출력
@@ -31,6 +33,9 @@ export default function List() {
             {/* 추가로 외부링크 사용 시 width랑 height를 모두 작성해야함 */}
             {/* 그리고 next.config.js에 작성도 해줘야함 - 검색해보기 */}
             <h4>{item} : $40</h4>
+            <span> {amount} </span>
+            <button onClick={() => addAmount(amount + 1)}>+</button>
+            {/* addAmount 소괄호 내에서 data를 갈아치워줌 */}
           </div>
         );
       })}
