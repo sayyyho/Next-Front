@@ -6,6 +6,7 @@
 import { age, Greeting } from "./data.js";
 
 export default function Cart() {
+  let items = ["tomatoes", "pasta"];
   return (
     <div>
       <h4 className="title">Cart</h4>
@@ -17,20 +18,34 @@ export default function Cart() {
       {/* Component로 덩어리식으로 묶자 */}
       <Greeting></Greeting>
       <h4>Info : {age}</h4>
-      <CartItem></CartItem>
-      <CartItem></CartItem>
-      <CartItem></CartItem>
+      <CartItem item={items[0]}></CartItem>
+      <CartItem item={items[1]}></CartItem>
       {/* 재사용이 잦은 요소들만 컴포넌트화 시키는게 좋음 */}
+      <Banner card="현대카드" />
+      <Banner card="롯데카드" />
+      <ColorButton select="red" />
+      <ColorButton select="blue" />
     </div>
   );
+}
+
+function ColorButton(props) {
+  return <button style={{ backgroundColor: props.select }}>버튼</button>;
+}
+
+function Banner(props) {
+  return <h4>{props.card} 결제 행사중</h4>;
 }
 // nextJS는 서버 컴포넌트랑 클라이언트 컴포넌트가 나뉨
 
 // 컴포넌트는 다른 요소 밖에서 만드는 것이 좋음
-function CartItem() {
+
+// props는 부모 컴포넌트가 자식 컴포넌트에게 값을 전송하는 문법
+// 하위에서 사용할 값들은 최상위 부모 컴포넌트에 값을 선언하는게 좋음
+function CartItem(props) {
   return (
     <div className="cart-item">
-      <p>상품명</p>
+      <p>{props.item}</p>
       <p>$40</p>
       <p>1개</p>
     </div>
