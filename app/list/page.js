@@ -4,7 +4,7 @@
 import { useState } from "react";
 export default function List() {
   let itemName = ["Tomato", "Pasta", "Coconut"];
-  let [amount, addAmount] = useState(0);
+  let [amount, addAmount] = useState([0, 0, 0]);
   // state도 클라이언트 컴포넌트 내에서만 가능
   // state 이점 : state 변경 시 자동 재랜더링 기능 제공
 
@@ -33,8 +33,20 @@ export default function List() {
             {/* 추가로 외부링크 사용 시 width랑 height를 모두 작성해야함 */}
             {/* 그리고 next.config.js에 작성도 해줘야함 - 검색해보기 */}
             <h4>{item} : $40</h4>
-            <span> {amount} </span>
-            <button onClick={() => addAmount(amount + 1)}>+</button>
+            <span>{amount[index]}</span>
+            <button
+              onClick={() => {
+                // state는 이전의 값과 완전히 다를 때, 수정이 된다.
+                // 그냥 let copy = amount를 통해 값을 할당받고
+                // copy를 수정시켜도, 가리키는 포인터가 일치하기 때문에, == 연산 시 늘 true가 나와 수정되지 않는다.
+                let copy = [...amount];
+                // 전개연산을 통해야 포인터(레퍼런스)가 다르고, 값이 동일한 새로운 배열을 만들 수 있다.
+                copy[index]++;
+                addAmount(copy);
+              }}
+            >
+              +
+            </button>
             {/* addAmount 소괄호 내에서 data를 갈아치워줌 */}
           </div>
         );
